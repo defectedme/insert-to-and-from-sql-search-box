@@ -18,8 +18,7 @@ namespace insert_to_and_from_sql
     public partial class Form2 : Form
     {
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-6795RSE;Initial Catalog=Northwind;Integrated Security=True");
-        SqlCommand cmd;
-        SqlDataReader dr;
+
 
 
         public Form2()
@@ -63,6 +62,16 @@ namespace insert_to_and_from_sql
         {
             Form3 from3 = new Form3();
             from3.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand("Select * from Orders where OrderID = 10240", con);
+            con.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
         }
     }
 }
